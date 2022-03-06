@@ -8,9 +8,41 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="bg-warning">
+      <div class="row">
+        <div class="col-3 nav_head">
+          <%= link_to homes_top_path do%>
+            <h3>飯つく！</h3>
+          <% end %>
+        </div>
+        <div class="nav_item col-6 offset-3 d-flex justify-content-around">
+          <% if customer_signed_in? %>
+            <li>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+            </li>
+            <li>
+              <%= link_to "レシピ一覧", recipes_path %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "新規登録", new_customer_registration_path %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_customer_session_path %>
+            </li>
+          <% end %>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="bg-success">
+    </footer>
   </body>
 </html>

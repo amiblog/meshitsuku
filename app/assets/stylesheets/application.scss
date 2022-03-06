@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.new_img{
+  width: 100%;
+  height: 700px;
+  background-image: url('new_registration.jpg');
+  background-size: cover;
+  background-position: top;
+}
+
+footer{
+  height: 50px;
+}
