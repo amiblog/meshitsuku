@@ -1,7 +1,24 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      
+      <% if @customer.profile_image.attached? %>
+        <%= image_tag @customer.profile_image, size: "200x200"%>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200"%>
+      <% end %>
+      <div><%= @customer.nickname %></div>
+      <div><%= @customer.introduction %></div>
+      <%= link_to "編集", edit_customer_path(@customer.id) %>
+    </div>
+    <div class="col-8 offset-1">
+      <% @customer.recipes.all.each do |recipe| %>
+        <div class="card" style="width: 10rem;">
+          <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+          <div class="card-body">
+            <p class="card-text"><%= recipe.title %></p>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
