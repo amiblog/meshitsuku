@@ -21,19 +21,25 @@
         </div>
         <div class="nav_item col-6 offset-3 d-flex justify-content-around">
           <% if customer_signed_in? %>
-            <li>
+            <div>
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light" %>
-            </li>
-            <li>
+            </div>
+            <div>
               <%= link_to "レシピ一覧", recipes_path, class: "btn btn-light" %>
-            </li>
+            </div>
+            <div>
+              <%= link_to "レシピ投稿", recipe_new_path, class: "btn btn-light"%>
+            </div>
           <% else %>
-            <li>
+            <div>
               <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light" %>
-            </li>
-            <li>
+            </div>
+            <div>
               <%= link_to "ログイン", new_customer_session_path, class: "btn btn-light" %>
-            </li>
+            </div>
+            <div>
+              <%= link_to "レシピ投稿", new_recipe_path, class: "btn btn-light"%>
+            </div>
           <% end %>
       </div>
     </header>
