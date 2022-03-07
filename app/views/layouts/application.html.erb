@@ -14,7 +14,7 @@
   <body>
     <header class="bg-warning">
       <div class="row">
-        <div class="col-3 nav_head">
+        <div class="col-2 offset-1 nav_head">
           <%= link_to homes_top_path do%>
             <h3>飯つく！</h3>
           <% end %>
@@ -22,17 +22,17 @@
         <div class="nav_item col-6 offset-3 d-flex justify-content-around">
           <% if customer_signed_in? %>
             <li>
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light" %>
             </li>
             <li>
-              <%= link_to "レシピ一覧", recipes_path %>
+              <%= link_to "レシピ一覧", recipes_path, class: "btn btn-light" %>
             </li>
           <% else %>
             <li>
-              <%= link_to "新規登録", new_customer_registration_path %>
+              <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light" %>
             </li>
             <li>
-              <%= link_to "ログイン", new_customer_session_path %>
+              <%= link_to "ログイン", new_customer_session_path, class: "btn btn-light" %>
             </li>
           <% end %>
       </div>
