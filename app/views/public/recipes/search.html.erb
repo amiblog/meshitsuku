@@ -8,8 +8,11 @@
     </div>
   </div>
   <div class="row">
+    <h3>検索結果</h3>
+  </div>
+  <div class="row">
     <div class="col-12">
-      <% @recipes.each do |recipe| %>
+      <% @results.each do |recipe| %>
         <div class="card" style="width: 10rem;">
           <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
           <div class="card-body">

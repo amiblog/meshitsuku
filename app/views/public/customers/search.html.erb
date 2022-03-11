@@ -8,14 +8,16 @@
     </div>
   </div>
   <div class="row">
+    <h3>検索結果</h3>
+  </div>
+  <div class="row">
     <div class="col-12">
-      <% @customers.each do |customer| %>
+      <% @results.each do |customer| %>
         <%= link_to customer_path(customer.id) do %>
           <div class="card" style="width: 10rem;">
             <%= image_tag customer.profile_image, size:'158x158', class: "card-image-top"%>
             <div class="card-body">
               <p class="card-text"><%= customer.nickname%></p>
-              <p class="card-text"><%= "#{customer.recipes.count}レシピ"%></p>
             </div>
           </div>
         <% end %>

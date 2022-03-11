@@ -1,4 +1,7 @@
 class Public::RecipesController < ApplicationController
+
+  before_action :set_q, only: [:index, :search]
+
   def new
     @recipe=Recipe.new
   end
@@ -34,9 +37,17 @@ class Public::RecipesController < ApplicationController
     @recipe.destroy
   end
 
+  def search
+    @results=@q.result
+  end
+
   private
 
   def recipe_params
     params.require(:recipe).permit(:title, :body, :recipe_image)
+  end
+
+  def set_q
+    @q = Recipe.ransack(params[:q])
   end
 end
