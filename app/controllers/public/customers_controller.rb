@@ -17,6 +17,15 @@ class Public::CustomersController < ApplicationController
     redirect_to customer_path(@customer.id)
   end
 
+  def unsubscribe
+
+  end
+
+  def destroy
+    @customer=current_customer
+    @customer.destroy
+  end
+
   private
 
   def customer_params

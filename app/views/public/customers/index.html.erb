@@ -2,12 +2,14 @@
   <div class="row">
     <div class="col-12">
       <% @customers.each do |customer| %>
-         <div class="card" style="width: 10rem;">
-          <%= image_tag customer.profile_image, size:'158x158', class: "card-image-top"%>
-          <div class="card-body">
-            <p class="card-text"><%= customer.nickname%></p>
+        <%= link_to customer_path(customer.id) do %>
+          <div class="card" style="width: 10rem;">
+            <%= image_tag customer.profile_image, size:'158x158', class: "card-image-top"%>
+            <div class="card-body">
+              <p class="card-text"><%= customer.nickname%></p>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

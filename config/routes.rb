@@ -16,10 +16,13 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    get 'homes/top'
+    root to: 'homes#top'
     get 'homes/about'
+    get "customers/unsubscribe" => "customers#unsubscribe"
     resources :customers, only: [:index, :show, :edit, :update, :destroy]
-    resources :recipes, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :recipes, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:create]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

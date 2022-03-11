@@ -12,12 +12,15 @@
     </div>
     <div class="col-8 offset-1">
       <% @customer.recipes.all.each do |recipe| %>
-        <div class="card" style="width: 10rem;">
-          <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
-          <div class="card-body">
-            <p class="card-text"><%= recipe.title %></p>
+        <%= link_to recipe_path(recipe.id) do %>
+          <div class="card" style="width: 10rem;">
+            <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+            <div class="card-body">
+              <p class="card-text"><%= recipe.title %></p>
+              <p class="card-text"><%= link_to "詳細を見る", recipe_path(recipe.id) %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

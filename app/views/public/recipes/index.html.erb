@@ -5,8 +5,12 @@
         <div class="card" style="width: 10rem;">
           <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
           <div class="card-body">
-            <p class="card-text"><%= recipe.title%></p>
-            <p class="card-text"><%= recipe.customer.nickname %></p>
+            <%= link_to recipe_path(recipe.id) do %>
+              <p class="card-text"><%= recipe.title%></p>
+            <% end %>
+            <%= link_to customer_path(recipe.customer.id) do %>
+              <p class="card-text"><%= recipe.customer.nickname %></p>
+            <% end %>
           </div>
         </div>
       <% end %>
