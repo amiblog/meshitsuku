@@ -18,6 +18,8 @@
             <div class="card-body">
               <p class="card-text"><%= recipe.title %></p>
               <p class="card-text"><%= link_to "詳細を見る", recipe_path(recipe.id) %></p>
+              <%= link_to "#{recipe.comments.count}コメント", recipe_path(recipe.id)%>
+              <%= link_to "♥#{recipe.favorites.count}", recipe_path(recipe.id)%>
             </div>
           </div>
         <% end %>

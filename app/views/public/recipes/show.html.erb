@@ -1,11 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <% if @recipe.recipe_image.attached? %>
-        <%= image_tag @recipe.recipe_image, size: "300x300" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "300x300" %>
-      <% end %>
+      <div>
+        <% if @recipe.recipe_image.attached? %>
+          <%= image_tag @recipe.recipe_image, size: "300x300" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "300x300" %>
+        <% end %>
+      </div>
+      <div>
+        <% if @recipe.favorited_by?(current_customer) %>
+          <p>
+            <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
+              ♥<%= @recipe.favorites.count %>いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
+              ♡<%= @recipe.favorites.count %>いいね
+            <% end %>
+          </p>
+        <% end %>
+      </div>
     </div>
     <div class="col-6 offset-1">
       <%= @recipe.title %>

@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
     @comment=current_customer.comments.new(comment_params)
     @comment.recipe_id=@recipe.id
     @comment.save
-    redirect_to request.referer 
+    redirect_to request.referer
   end
   
   private
