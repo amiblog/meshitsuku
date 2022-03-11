@@ -9,9 +9,36 @@
     </div>
     <div class="col-6 offset-1">
       <%= @recipe.title %>
-      <%= @recipe.body %>
+      <%= simple_format(@recipe.body) %>
       <%= link_to "編集", edit_recipe_path(@recipe.id), class: "btn btn-success" %>
       <%= link_to "削除", recipe_path(@recipe.id), method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-4">
+      <h3>コメント</h3><%= @recipe.comments.count %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-4">
+      <table class="table table-hover">
+        <% @recipe.comments.each do |comment| %>
+        <tr>
+          <td><%= image_tag comment.customer.profile_image, size: "50x50"%></td>
+          <td><%= comment.customer.nickname %></td>
+          <td><%= simple_format(comment.comment)%></td>
+          <td><%= comment.created_at.strftime('%Y/%m/%d')%></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-6 offset-4">
+      <%= form_with model: [@recipe, @comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: 'コメントをここに', class: "form-control" %>
+        <%= f.submit "送信"%>
+      <% end %>
     </div>
   </div>
 </div>

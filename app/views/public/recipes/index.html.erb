@@ -11,6 +11,7 @@
             <%= link_to customer_path(recipe.customer.id) do %>
               <p class="card-text"><%= recipe.customer.nickname %></p>
             <% end %>
+            <%= link_to "#{recipe.comments.count}コメント", recipe_path(recipe.id)%>
           </div>
         </div>
       <% end %>
