@@ -16,10 +16,10 @@
       <div class="row">
         <div class="col-2 offset-1 nav_head">
           <%= link_to root_path do%>
-            <h3>飯つく！</h3>
+            <div class="header_logo"></div>
           <% end %>
         </div>
-        <div class="nav_item col-6 offset-3 d-flex justify-content-around">
+        <div class="nav_item col-6 offset-3 d-flex justify-content-around align-items-center">
           <% if admin_signed_in? %>
             <div>
               <%= link_to "ユーザー一覧", customers_path, class: "btn btn-light" %>

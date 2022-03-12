@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
     resources :recipes, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
       collection do
         get 'search'
       end

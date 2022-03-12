@@ -8,21 +8,6 @@
           <%= image_tag 'no_image', size: "300x300" %>
         <% end %>
       </div>
-      <div>
-        <% if @recipe.favorited_by?(current_customer) %>
-          <p>
-            <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
-              ♥<%= @recipe.favorites.count %>いいね
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
-              ♡<%= @recipe.favorites.count %>いいね
-            <% end %>
-          </p>
-        <% end %>
-      </div>
     </div>
     <div class="col-6 offset-1">
       <%= @recipe.title %>
@@ -32,8 +17,23 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6 offset-4">
-      <h3>コメント</h3><%= @recipe.comments.count %>
+    <div class="col-6 offset-4 d-flex align-items-center">
+      <h3>コメント</h3>
+      <h4><%= @recipe.comments.count %></h4>
+      <h3 class="ml-auto">いいね</h3>
+      <% if @recipe.favorited_by?(current_customer) %>
+        <h4>
+          <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
+            <i class="fas fa-heart text-danger"></i><span class="text-dark"><%= @recipe.favorites.count %></span>
+          <% end %>
+        </h4>
+      <% else %>
+        <h4>
+          <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
+            <i class="far fa-heart text-danger"></i><span class="text-dark"><%= @recipe.favorites.count %></span>
+          <% end %>
+        </h4>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -44,6 +44,16 @@
           <td><%= image_tag comment.customer.profile_image, size: "50x50"%></td>
           <td><%= comment.customer.nickname %></td>
           <td><%= simple_format(comment.comment)%></td>
+          <td class="d-flex">
+            <% if comment.customer.id==current_customer.id %>
+              <%= link_to root_path do %>
+                <i class="fas fa-edit mr-2"></i>
+              <% end %>
+              <%= link_to recipe_comment_path(comment.recipe.id, comment.id), method: :delete do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= comment.created_at.strftime('%Y/%m/%d')%></td>
         </tr>
         <% end %>
