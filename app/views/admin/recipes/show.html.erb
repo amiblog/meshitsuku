@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div>
+        <% if @recipe.recipe_image.attached? %>
+          <%= image_tag @recipe.recipe_image, size: "300x300" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "300x300" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6 offset-1">
+      <%= @recipe.title %>
+      <%= simple_format(@recipe.body) %>
+      <%= link_to "削除", admin_recipe_path(@recipe.id), method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-4">
+      <h3>コメント</h3><%= @recipe.comments.count %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-4">
+      <table class="table table-hover">
+        <% @recipe.comments.each do |comment| %>
+        <tr>
+          <td><%= image_tag comment.customer.profile_image, size: "50x50"%></td>
+          <td><%= comment.customer.nickname %></td>
+          <td><%= simple_format(comment.comment)%></td>
+          <td><%= comment.created_at.strftime('%Y/%m/%d')%></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

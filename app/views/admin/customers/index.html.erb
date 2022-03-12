@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ユーザー名</th>
+            <th>ニックネーム</th>
+            <th>レシピ投稿数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td>
+                <%= link_to admin_customer_path(customer.id) do %>
+                  <%= customer.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to admin_customer_path(customer.id) do %>
+                  <%= customer.nickname %>
+                <% end %>
+              </td>
+              <td><%= customer.recipes.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

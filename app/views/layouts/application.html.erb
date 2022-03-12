@@ -20,6 +20,17 @@
           <% end %>
         </div>
         <div class="nav_item col-6 offset-3 d-flex justify-content-around">
+          <% if admin_signed_in? %>
+            <div>
+              <%= link_to "ユーザー一覧", customers_path, class: "btn btn-light" %>
+            </div>
+            <div>
+              <%= link_to "レシピ一覧", recipes_path, class: "btn btn-light" %>
+            </div>
+            <div>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light" %>
+            </div>
+          <% end %>
           <% if customer_signed_in? %>
             <div>
               <%= link_to "レシピ投稿", new_recipe_path, class: "btn btn-light"%>
