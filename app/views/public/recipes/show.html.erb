@@ -1,5 +1,9 @@
 <div class="container">
   <div class="row">
+    <h3 class="py-3">レシピ詳細</h3>
+  </div>
+
+  <div class="row">
     <div class="col-3">
       <div>
         <% if @recipe.recipe_image.attached? %>
@@ -15,10 +19,10 @@
         <% if @recipe.customer.id==current_customer.id%>
           <div class="ml-auto">
             <%= link_to edit_recipe_path(@recipe.id) do%>
-              <i class="fas fa-edit mr-2"></i>
+              <i class="fas fa-edit mr-2 text-success"></i>
             <% end %>
             <%= link_to recipe_path(@recipe.id), method: :delete do %>
-              <i class="fas fa-trash-alt"></i>
+              <i class="fas fa-trash-alt text-danger"></i>
             <% end %>
           </div>
         <% end %>
@@ -28,13 +32,26 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-2 offset-4 d-flex align-items-center">
+    <div class="col-3">
+      <div class="bg-primary rounded-top text-center">
+        <h5 class="text-white py-3">cooked by <%= @recipe.customer.nickname %></h5>
+      </div>
+      <div class="border-bottom">
+        <%= simple_format (@recipe.customer.introduction), class: "text-secondary" %>
+      </div>
+      <%= link_to customer_path(@recipe.customer.id) do %>
+        <div>
+          <p class="text-dark pt-2"><i class="fas fa-user"></i> <%= @recipe.customer.nickname%> さんのページへ</p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-2 offset-1 d-flex align-items-center">
       <h3>コメント</h3>
       <h4><%= @recipe.comments.count %></h4>
     </div>
-      <div class="col-2 offset-2 d-flex align-items-center favorite_btn">
-        <%= render 'public/favorites/btn', recipe: @recipe%>
-      </div>
+    <div class="col-2 offset-2 d-flex align-items-center favorite_btn">
+      <%= render 'public/favorites/btn', recipe: @recipe%>
+    </div>
   </div>
 
   <div class="row comments_index">

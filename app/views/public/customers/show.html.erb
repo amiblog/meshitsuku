@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <h3 class="py-3"><%= @customer.nickname %> さんのページ</h3>
+  </div>
+  <div class="row">
     <div class="col-3">
       <% if @customer.profile_image.attached? %>
         <%= image_tag @customer.profile_image, size: "200x200"%>
@@ -8,15 +11,21 @@
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
-      <div>
-        <%= link_to "ユーザー情報編集", edit_customer_path(@customer.id), class: "btn btn-success btn-sm" %>
-      </div>
+      <% if @customer.id == current_customer.id %>
+        <div>
+          <%= link_to "ユーザー情報編集", edit_customer_path(@customer.id), class: "btn btn-success btn-sm" %>
+        </div>
+      <% end %>
     </div>
-    <div class="col-8 offset-1 d-flex">
+    <div class="col-8 offset-1 d-flex flex-wrap">
       <% @customer.recipes.all.each do |recipe| %>
         <%= link_to recipe_path(recipe.id) do %>
-          <div class="card mr-5" style="width: 10rem;">
-            <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+          <div class="card mr-5 mb-5" style="width: 10rem;">
+            <% if recipe.recipe_image.attached? %>
+              <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+            <% else %>
+              <%= image_tag 'no_image', size:'158x158', class: "card-image-top"%>
+            <% end %>
             <div class="card-body">
               <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title %></p>
               <p class="card-text text-dark"> 詳細を見る</p>

@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <h3 class="py-3">レシピ詳細</h3>
+  </div>
+  <div class="row">
     <div class="col-3">
       <div>
         <% if @recipe.recipe_image.attached? %>
@@ -9,7 +12,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-6 offset-1">
+    <div class="col-6 offset-1 border">
       <div class="d-flex align-items-center border-bottom">
         <h4 class="pt-2"><%= @recipe.title %></h4>
         <div class="ml-auto">

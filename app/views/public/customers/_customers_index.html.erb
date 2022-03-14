@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12 d-flex flex-wrap">
+    <% obj.each do |customer| %>
+      <%= link_to customer_path(customer.id) do %>
+        <div class="card mr-5 mb-5" style="width: 10rem;">
+          <%= image_tag customer.profile_image, size:'158x158', class: "card-image-top"%>
+          <div class="card-body">
+            <p class="card-text text-truncate text-dark"><i class="fas fa-user text-secondary"></i> <%= customer.nickname%></p>
+            <p class="card-text text-dark"><%= "投稿数: #{customer.recipes.count}"%></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

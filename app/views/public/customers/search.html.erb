@@ -8,20 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <h3>検索結果</h3>
+    <h3 class="py-3">検索結果</h3>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <% @results.each do |customer| %>
-        <%= link_to customer_path(customer.id) do %>
-          <div class="card" style="width: 10rem;">
-            <%= image_tag customer.profile_image, size:'158x158', class: "card-image-top"%>
-            <div class="card-body">
-              <p class="card-text"><%= customer.nickname%></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'public/customers/customers_index', obj: @results %>
 </div>
