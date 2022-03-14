@@ -28,24 +28,13 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-6 offset-4 d-flex align-items-center">
+    <div class="col-2 offset-4 d-flex align-items-center">
       <h3>コメント</h3>
       <h4><%= @recipe.comments.count %></h4>
-      <h3 class="ml-auto">いいね</h3>
-      <% if @recipe.favorited_by?(current_customer) %>
-        <h4>
-          <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
-            <i class="fas fa-heart text-danger"></i><span class="text-dark"><%= @recipe.favorites.count %></span>
-          <% end %>
-        </h4>
-      <% else %>
-        <h4>
-          <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
-            <i class="far fa-heart text-danger"></i><span class="text-dark"><%= @recipe.favorites.count %></span>
-          <% end %>
-        </h4>
-      <% end %>
     </div>
+      <div class="col-2 offset-2 d-flex align-items-center favorite_btn">
+        <%= render 'public/favorites/btn', recipe: @recipe%>
+      </div>
   </div>
 
   <div class="row">

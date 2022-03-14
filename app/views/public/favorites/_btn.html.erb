@@ -1,0 +1,14 @@
+<h3 class="ml-auto">いいね</h3>
+<% if recipe.favorited_by?(current_customer) %>
+  <h4>
+    <%= link_to recipe_favorites_path(recipe.id), method: :delete, remote: true do %>
+      <i class="fas fa-heart text-danger"></i><span class="text-dark"><%= recipe.favorites.count %></span>
+    <% end %>
+  </h4>
+<% else %>
+  <h4>
+    <%= link_to recipe_favorites_path(recipe.id), method: :post, remote: true do %>
+      <i class="far fa-heart text-danger"></i><span class="text-dark"><%= recipe.favorites.count %></span>
+    <% end %>
+  </h4>
+<% end %>
