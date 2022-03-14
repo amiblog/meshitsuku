@@ -1,0 +1,6 @@
+<div class="col-6 offset-4">
+  <%= form_with model: [recipe, comment], local: false do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: 'コメントをここに', class: "form-control" %>
+    <%= f.submit "送信"%>
+  <% end %>
+</div>

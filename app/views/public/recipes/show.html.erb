@@ -37,37 +37,11 @@
       </div>
   </div>
 
-  <div class="row">
-    <div class="col-6 offset-4">
-      <table class="table table-hover">
-        <% @recipe.comments.each do |comment| %>
-        <tr>
-          <td><%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%></td>
-          <td><%= comment.customer.nickname %></td>
-          <td><%= simple_format(comment.comment)%></td>
-          <td class="d-flex">
-            <% if comment.customer.id==current_customer.id %>
-              <%= link_to root_path do %>
-                <i class="fas fa-edit mr-2"></i>
-              <% end %>
-              <%= link_to recipe_comment_path(comment.recipe.id, comment.id), method: :delete do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
-            <% end %>
-          </td>
-          <td><%= comment.created_at.strftime('%Y/%m/%d')%></td>
-        </tr>
-        <% end %>
-      </table>
-    </div>
+  <div class="row comments_index">
+    <%= render 'public/comments/comments_index', recipe: @recipe %>
   </div>
 
-  <div class="form-group row">
-    <div class="col-6 offset-4">
-      <%= form_with model: [@recipe, @comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: 'コメントをここに', class: "form-control" %>
-        <%= f.submit "送信"%>
-      <% end %>
-    </div>
+  <div class="form-group row comment_form">
+    <%= render 'public/comments/comment_form', recipe: @recipe, comment: @comment%>
   </div>
 </div>
