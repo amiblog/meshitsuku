@@ -8,18 +8,22 @@
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
-      <%= link_to "編集", edit_customer_path(@customer.id) %>
+      <div>
+        <%= link_to "ユーザー情報編集", edit_customer_path(@customer.id), class: "btn btn-success btn-sm" %>
+      </div>
     </div>
-    <div class="col-8 offset-1">
+    <div class="col-8 offset-1 d-flex">
       <% @customer.recipes.all.each do |recipe| %>
         <%= link_to recipe_path(recipe.id) do %>
-          <div class="card" style="width: 10rem;">
+          <div class="card mr-5" style="width: 10rem;">
             <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
             <div class="card-body">
-              <p class="card-text"><%= recipe.title %></p>
-              <p class="card-text"><%= link_to "詳細を見る", recipe_path(recipe.id) %></p>
-              <%= link_to "#{recipe.comments.count}コメント", recipe_path(recipe.id)%>
-              <%= link_to "♥#{recipe.favorites.count}", recipe_path(recipe.id)%>
+              <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title %></p>
+              <p class="card-text text-dark"> 詳細を見る</p>
+              <p class="card-text text-dark">
+                <%= recipe.comments.count %> <i class="fas fa-comment text-primary mr-4"></i>
+                <%= recipe.favorites.count %> <i class="fas fa-heart text-danger"></i>
+              </p>
             </div>
           </div>
         <% end %>

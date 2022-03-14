@@ -11,19 +11,19 @@
     <h3>検索結果</h3>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 d-flex">
       <% @results.each do |recipe| %>
         <%= link_to recipe_path(recipe.id) do %>
-          <div class="card" style="width: 10rem;">
+          <div class="card mr-5" style="width: 10rem;">
             <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
             <div class="card-body">
-              <p class="card-text"><%= recipe.title%></p>
+              <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title%></p>
               <%= link_to customer_path(recipe.customer.id) do %>
-                <p class="card-text"><%= recipe.customer.nickname %></p>
+                <p class="card-text text-dark"><i class="fas fa-user text-secondary"></i> <%= recipe.customer.nickname %></p>
               <% end %>
               <p class="card-text">
-                <%= recipe.favorites.count %><i class="fas fa-comment"></i>
-                <%= recipe.favorites.count %><i class="fas fa-heart"></i>
+                <%= recipe.comments.count %> <i class="fas fa-comment text-primary mr-4"></i>
+                <%= recipe.favorites.count %> <i class="fas fa-heart text-danger"></i>
               </p>
             </div>
           </div>
