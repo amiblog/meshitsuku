@@ -1,18 +1,17 @@
 class Public::CustomersController < ApplicationController
-
   before_action :set_q, only: [:index, :search]
   before_action :authenticate_customer!, except: [:index]
 
   def index
-    @customers=Customer.page(params[:page])
+    @customers = Customer.page(params[:page])
   end
 
   def show
-    @customer=Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-    @customer=Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
     if @customer.id != current_customer.id
       redirect_to customers_path
       flash[:alert] = "不正なアクセスです。"
@@ -20,7 +19,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer=Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to customer_path(@customer.id)
       flash[:notice] = "更新が完了しました。"
@@ -31,11 +30,10 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-
   end
 
   def destroy
-    @customer=current_customer
+    @customer = current_customer
     if @customer.destroy
       redirect_to root_path
       flash[:notice] = "退会が完了しました。ご利用ありがとうございました。"
@@ -43,7 +41,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def search
-    @results=@q.result
+    @results = @q.result
   end
 
   private
@@ -53,6 +51,6 @@ class Public::CustomersController < ApplicationController
   end
 
   def set_q
-    @q=Customer.ransack(params[:q])
+    @q = Customer.ransack(params[:q])
   end
 end
