@@ -11,4 +11,7 @@
     <h3>検索結果</h3>
   </div>
   <%= render 'public/recipes/recipes_index', obj: @results %>
+  <div class="row justify-content-center">
+    <%= paginate @results %>
+  </div>
 </div>

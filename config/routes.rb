@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     get 'homes/about'
     get "customers/unsubscribe" => "customers#unsubscribe"
     resources :customers, only: [:index, :show, :edit, :update, :destroy] do
+      member do
+        get 'favorites'
+      end
       collection do
         get 'search'
       end

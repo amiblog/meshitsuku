@@ -11,6 +11,11 @@
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
+      <div>
+        <%= link_to favorites_customer_path(@customer.id) do %>
+          <i class="fas fa-heart text-danger"></i> いいねしたレシピ
+        <% end %>
+      </div>
       <% if @customer.id == current_customer.id %>
         <div>
           <%= link_to "ユーザー情報編集", edit_customer_path(@customer.id), class: "btn btn-success btn-sm" %>

@@ -11,4 +11,7 @@
     <h3 class="py-3">レシピ一覧</h3>
   </div>
   <%= render 'public/recipes/recipes_index', obj: @recipes %>
+  <div class="row justify-content-center">
+    <%= paginate @recipes %>
+  </div>
 </div>

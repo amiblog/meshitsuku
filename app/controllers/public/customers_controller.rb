@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :set_q, only: [:index, :search]
   before_action :authenticate_customer!, except: [:index]
+  before_action :set_customer, only: [:favorites]
 
   def index
     @customers = Customer.page(params[:page])
@@ -32,6 +33,11 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
+  def favorites
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:recipe_id)
+    @favorite_recipes = Recipe.find(favorites)
+  end
+
   def destroy
     @customer = current_customer
     if @customer.destroy
@@ -52,5 +58,9 @@ class Public::CustomersController < ApplicationController
 
   def set_q
     @q = Customer.ransack(params[:q])
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 end
