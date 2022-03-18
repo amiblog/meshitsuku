@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_062735) do
     t.text "comment", null: false
     t.integer "customer_id"
     t.integer "recipe_id"
+    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
