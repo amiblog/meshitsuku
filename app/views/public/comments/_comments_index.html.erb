@@ -2,14 +2,29 @@
     <table class="table table-hover">
       <% recipe.comments.each do |comment| %>
       <tr>
-        <td><%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%></td>
+        <td>
+          <% if comment.customer.profile_image.attached? %>
+            <%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%>
+          <% else %>
+            <%= image_tag 'no_image', size: "50x50", class: "rounded-circle" %>
+          <% end %>
+        </td>
         <td><%= comment.customer.nickname %></td>
         <td><%= simple_format(comment.comment)%></td>
+        <td class="star">
+          <div id="star-rate<%= comment.id%>"></div>
+          <script>
+            $('#star-rate<%= comment.id%>').raty({
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= comment.star %>,
+            });
+          </script>
+        </td>
         <td class="d-flex">
           <% if comment.customer.id==current_customer.id %>
-            <%= link_to root_path do %>
-              <i class="fas fa-edit mr-2 text-success"></i>
-            <% end %>
             <%= link_to recipe_comment_path(comment.recipe.id, comment.id), method: :delete do %>
               <i class="fas fa-trash-alt text-danger"></i>
             <% end %>

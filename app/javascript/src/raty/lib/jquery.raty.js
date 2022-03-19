@@ -8,7 +8,6 @@
  * version: 3.1.1
  *
  */
-
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
