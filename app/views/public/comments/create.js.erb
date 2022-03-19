@@ -1,2 +1,3 @@
-$("textarea").val("");
 $(".comments_index").html("<%= j(render "public/comments/comments_index", recipe: @recipe) %>");
+$(".comment_form").html("<%= j(render "public/comments/comment_form", recipe: @recipe, comment: @comment) %>");
+$("textarea").val("");
