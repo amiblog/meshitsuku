@@ -12,5 +12,4 @@ class Customer < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true
-  validates :introduction, presence: true
 end
