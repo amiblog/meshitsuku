@@ -54,7 +54,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    @results = @q.result.page(params[:page])
   end
 
   private
