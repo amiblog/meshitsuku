@@ -7,7 +7,7 @@
       <% if @customer.profile_image.attached? %>
         <%= image_tag @customer.profile_image, size: "200x200"%>
       <% else %>
-        <%= image_tag 'no_image', size: "200x200"%>
+        <%= image_tag asset_path('no_image'), size: "200x200"%>
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
