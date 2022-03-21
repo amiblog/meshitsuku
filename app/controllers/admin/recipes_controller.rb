@@ -1,6 +1,8 @@
 class Admin::RecipesController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.page(params[:page])
   end
 
   def show
@@ -10,5 +12,7 @@ class Admin::RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    redirect_to admin_recipes_path
+    flash[:notice] = "削除しました。"
   end
 end

@@ -8,7 +8,7 @@
         <% if @recipe.recipe_image.attached? %>
           <%= image_tag @recipe.recipe_image, size: "300x300" %>
         <% else %>
-          <%= image_tag 'no_image', size: "300x300" %>
+          <%= image_tag asset_path('no_image.png'), size: "300x300" %>
         <% end %>
       </div>
     </div>
@@ -16,7 +16,7 @@
       <div class="d-flex align-items-center border-bottom">
         <h4 class="pt-2"><%= @recipe.title %></h4>
         <div class="ml-auto">
-          <%= link_to admin_recipe_path(@recipe.id), method: :delete do %>
+          <%= link_to admin_recipe_path(@recipe.id), data: {confirm: "削除しますか？"}, method: :delete do %>
             <i class="fas fa-trash-alt text-danger"></i>
           <% end %>
         </div>
@@ -37,11 +37,17 @@
       <table class="table table-hover">
         <% @recipe.comments.each do |comment| %>
         <tr>
-          <td><%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%></td>
+          <td>
+            <% if comment.customer.profile_image.attached? %>
+              <%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%>
+            <% else %>
+              <%= image_tag asset_path('no_image.png'), size: '50x50', class: "rounded-circle"%>
+            <% end %>
+          </td>
           <td><%= comment.customer.nickname %></td>
           <td><%= simple_format(comment.comment)%></td>
           <td>
-            <%= link_to admin_recipe_comment_path(comment.recipe.id, comment.id), method: :delete do %>
+            <%= link_to admin_recipe_comment_path(comment.recipe.id, comment.id), data: {confirm: "削除しますか？"}, method: :delete do %>
               <i class="fas fa-trash-alt text-danger"></i>
             <% end %>
           </td>

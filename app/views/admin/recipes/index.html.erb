@@ -1,23 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <h3 class="py-3">レシピ一覧</h3>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 d-flex flex-wrap">
       <% @recipes.each do |recipe| %>
         <%= link_to admin_recipe_path(recipe.id) do %>
-          <div class="card" style="width: 10rem;">
-            <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+          <div class="card mr-5 mb-5" style="width: 10rem;">
+            <% if recipe.recipe_image.attached? %>
+              <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+            <% else %>
+              <%= image_tag asset_path('no_image.png'), size:'158x158', class: "card-image-top"%>
+            <% end %>
             <div class="card-body">
-              <p class="card-text"><%= recipe.title%></p>
-              <%= link_to customer_path(recipe.customer.id) do %>
-                <p class="card-text"><%= recipe.customer.nickname %></p>
+              <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title%></p>
+              <%= link_to admin_customer_path(recipe.customer.id) do %>
+                <p class="card-text text-dark"><i class="fas fa-user text-secondary"></i> <%= recipe.customer.nickname %></p>
               <% end %>
               <p class="card-text">
-                <%= recipe.favorites.count %><i class="fas fa-comment"></i>
-                <%= recipe.favorites.count %><i class="fas fa-heart"></i>
+                <%= recipe.comments.count %> <i class="fas fa-comment text-primary mr-4"></i>
+                <%= recipe.favorites.count %> <i class="fas fa-heart text-danger"></i>
               </p>
             </div>
           </div>
         <% end %>
       <% end %>
     </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @recipes %>
   </div>
 </div>

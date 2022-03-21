@@ -7,19 +7,23 @@
       <% if @customer.profile_image.attached? %>
         <%= image_tag @customer.profile_image, size: "200x200"%>
       <% else %>
-        <%= image_tag 'no_image', size: "200x200"%>
+        <%= image_tag asset_path('no_image.png'), size: "200x200"%>
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
       <div>
-        <%= link_to "強制退会", admin_customer_path(@customer.id), method: :delete, class: "btn btn-danger btn-sm" %>
+        <%= link_to "強制退会", admin_customer_path(@customer.id), data: {confirm: "退会処理しますか？"}, method: :delete, class: "btn btn-danger btn-sm" %>
       </div>
     </div>
     <div class="col-8 offset-1 d-flex flex-wrap">
       <% @customer.recipes.all.each do |recipe| %>
         <%= link_to admin_recipe_path(recipe.id) do %>
           <div class="card mr-5 mb-5" style="width: 10rem;">
-            <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+            <% if recipe.recipe_image.attached? %>
+              <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
+            <% else %>
+              <%= image_tag asset_path('no_image.png'), size:'158x158', class: "card-image-top"%>
+            <% end %>
             <div class="card-body">
               <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title %></p>
               <p class="card-text text-dark"> 詳細を見る</p>

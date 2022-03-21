@@ -29,7 +29,7 @@
             <% if recipe.recipe_image.attached? %>
               <%= image_tag recipe.recipe_image, size:'158x158', class: "card-image-top"%>
             <% else %>
-              <%= image_tag 'no_image', size:'158x158', class: "card-image-top"%>
+              <%= image_tag asset_path('no_image.png'), size:'158x158', class: "card-image-top"%>
             <% end %>
             <div class="card-body">
               <p class="card-text text-truncate text-dark"><i class="fas fa-cookie-bite"></i> <%= recipe.title %></p>
