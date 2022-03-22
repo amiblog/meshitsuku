@@ -45,9 +45,8 @@
         </div>
       <% end %>
     </div>
-    <div class="col-2 offset-1 d-flex align-items-center">
-      <h3>コメント</h3>
-      <h4><%= @recipe.comments.count %></h4>
+    <div class="col-2 offset-1 d-flex align-items-center comments_count">
+      <%= render 'public/comments/comments_count', recipe: @recipe%>
     </div>
     <div class="col-2 offset-2 d-flex align-items-center favorite_btn">
       <%= render 'public/favorites/btn', recipe: @recipe%>
