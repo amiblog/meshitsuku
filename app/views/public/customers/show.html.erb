@@ -13,7 +13,7 @@
       <div><%= @customer.introduction %></div>
       <div>
         <%= link_to favorites_customer_path(@customer.id) do %>
-          <i class="fas fa-heart text-danger"></i> いいねしたレシピ
+          <i class="fas fa-heart text-danger"></i> <span class="text-dark">いいねしたレシピ</span>
         <% end %>
       </div>
       <% if @customer.id == current_customer.id %>
