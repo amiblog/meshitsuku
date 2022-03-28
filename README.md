@@ -1,7 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-# 飯つく！（仮）
+# れしぇり
 
 ## サイト概要
 レシピを投稿したり、他の人が作ったレシピの評価ができるレビューサイトです。<br>
@@ -49,7 +48,3 @@ https://docs.google.com/spreadsheets/d/19kTj82HIyU6I8kZ-ImtyMOlL7ZYsIm-Sm7l8HBOK
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-食品などのアイコンを作成するために、なにかいいものがあれば使用<br>
-したいと思います。
