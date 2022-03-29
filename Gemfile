@@ -62,6 +62,7 @@ gem 'ransack'
 gem 'rubocop-airbnb'
 gem 'devise-i18n'
 gem 'dotenv-rails'
+
 group :production do
   gem 'mysql2'
 end

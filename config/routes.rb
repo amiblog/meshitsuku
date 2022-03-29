@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    get 'homes/about'
     get "customers/unsubscribe" => "customers#unsubscribe"
     resources :customers, only: [:index, :show, :edit, :update, :destroy] do
       member do
