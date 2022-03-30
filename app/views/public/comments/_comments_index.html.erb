@@ -1,17 +1,17 @@
-  <div class="col-6 offset-4">
+  <div class="col-7 offset-3">
     <table class="table table-hover">
       <% recipe.comments.each do |comment| %>
       <tr>
-        <td>
+        <td style="width: 10%">
           <% if comment.customer.profile_image.attached? %>
             <%= image_tag comment.customer.profile_image, size: "50x50", class: "rounded-circle"%>
           <% else %>
             <%= image_tag asset_path('no_image.png'), size: "50x50", class: "rounded-circle" %>
           <% end %>
         </td>
-        <td><%= comment.customer.nickname %></td>
-        <td><%= simple_format(comment.comment)%></td>
-        <td class="star">
+        <td style="width: 10%"><%= comment.customer.nickname %></td>
+        <td style="width: 40%"><%= simple_format(comment.comment)%></td>
+        <td class="star" style="width: 25%">
           <div id="star-rate<%= comment.id%>"></div>
           <script>
             $('#star-rate<%= comment.id%>').raty({
@@ -23,14 +23,14 @@
             });
           </script>
         </td>
-        <td class="d-flex">
+        <td style="width: 5%">
           <% if comment.customer.id==current_customer.id %>
             <%= link_to recipe_comment_path(comment.recipe.id, comment.id), data: {confirm: "削除しますか？"}, method: :delete do %>
               <i class="fas fa-trash-alt text-danger"></i>
             <% end %>
           <% end %>
         </td>
-        <td><%= comment.created_at.strftime('%Y/%m/%d')%></td>
+        <td style="width: 10%"><%= comment.created_at.strftime('%Y/%m/%d')%></td>
       </tr>
       <% end %>
     </table>
