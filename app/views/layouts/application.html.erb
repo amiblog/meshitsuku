@@ -14,12 +14,12 @@
   <body>
     <header class="bg-warning">
       <div class="row">
-        <div class="col-2 offset-1 nav_head">
+        <div class="col-md-2 col-sm-1 offset-md-1 nav_head">
           <%= link_to root_path do%>
             <div class="header_logo my-2 rounded-pill"></div>
           <% end %>
         </div>
-        <div class="nav_item col-6 offset-3 d-flex justify-content-around align-items-center">
+        <div class="nav_item col-md-6 col-sm-3 offset-3 d-flex justify-content-around align-items-center">
           <% if admin_signed_in? %>
             <div>
               <%= link_to "ユーザー一覧", admin_customers_path, class: "btn btn-light" %>
@@ -81,7 +81,7 @@
     </main>
 
     <footer class="row bg-success justify-content-center">
-      <div class="col-4 justify-content-center d-flex align-items-center text-white">
+      <div class="col-md-4 col-sm-2 justify-content-center d-flex align-items-center text-white">
         © 2022 Resheri inc.
       </div>
     </footer>
