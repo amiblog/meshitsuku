@@ -5,9 +5,9 @@
   <div class="row">
     <div class="col-3">
       <% if @customer.profile_image.attached? %>
-        <%= image_tag @customer.profile_image, size: "200x200"%>
+        <%= image_tag @customer.profile_image, size: "200x200", class: "rounded"%>
       <% else %>
-        <%= image_tag asset_path('no_image.png'), size: "200x200"%>
+        <%= image_tag asset_path('no_image.png'), size: "200x200", class: "rounded"%>
       <% end %>
       <div><%= @customer.nickname %></div>
       <div><%= @customer.introduction %></div>
