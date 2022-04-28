@@ -36,6 +36,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     favorites = Favorite.where(customer_id: @customer.id).pluck(:recipe_id)
     @favorite_recipes = Recipe.find(favorites)
+    @customer = Customer.find(params[:id])
   end
 
   def destroy
