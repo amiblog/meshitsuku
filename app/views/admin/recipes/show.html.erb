@@ -7,9 +7,9 @@
     <div class="col-3">
       <div>
         <% if @recipe.recipe_image.attached? %>
-          <%= image_tag @recipe.recipe_image, size: "300x300", class: "rounded" %>
+          <%= image_tag @recipe.recipe_image, width: "100%", class: "rounded" %>
         <% else %>
-          <%= image_tag asset_path('no_image.png'), size: "300x300" %>
+          <%= image_tag asset_path('no_image.png'), width: "100%" %>
         <% end %>
       </div>
       <div class="mt-5">
